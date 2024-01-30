@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shohibul Qurban</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7; /* Warna latar belakang */
+            color: #333; /* Warna teks */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background: #4CAF50; /* Warna hijau muda pada header */
+            padding: 20px;
+            text-align: center;
+            color: #fff; /* Warna teks header */
+        }
+
+        .top-background {
+            background: linear-gradient(to bottom, #f0f0f0, #d9d9d9); /* Gradien abu-abu di atas banner */
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #8b9e8c; /* Warna hijau muda pada navigasi */
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+            z-index: 1;
+        }
+
+        nav a {
+            color: #fff; /* Warna teks navigasi */
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            transition: color 0.3s ease-in-out; /* Transisi warna */
+            border: 1px solid transparent; /* Batas kotak pada link */
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: #388E3C; /* Warna teks saat dihover */
+        }
+
+        nav a.login {
+            border: 1px solid #66BB6A; /* Batas kotak pada link login */
+            border-radius: 5px;
+        }
+
+        nav a.sign-in {
+            background: linear-gradient(to right, #66BB6A, #4CAF50); /* Gradien hijau pada link sign in */
+            color: #fff; /* Warna teks pada link sign in */
+            border: 1px solid #66BB6A; /* Batas kotak pada link sign in */
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        nav a.sign-in:hover {
+            background: linear-gradient(to right, #4CAF50, #388E3C); /* Gradien hijau saat dihover pada link sign in */
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+            background: #fff;
+        }
+
+        .cart-logo {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background: #8b9e8c; /* Warna latar belakang logo cart dan profile */
+            padding: 5px; /* Menambahkan padding agar logo terlihat di tengah background */
+            border-radius: 50%;
+        }
+
+        .profile-logo {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+        }
+
+        .cart-logo img, .profile-logo img {
+            width: 100%; /* Menyesuaikan lebar gambar ke ukuran logo */
+            height: 100%; /* Menyesuaikan tinggi gambar ke ukuran logo */
+        }
+
+        .banner {
+            background: linear-gradient(to right, #66BB6A, #4CAF50); /* Gradien hijau pada banner */
+            height: 150px; /* Sesuaikan tinggi banner */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff; /* Warna teks pada banner */
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden; /* Agar peta tidak keluar dari main content */
+        }
+
+        .section-container {
+            flex: 1;
+            padding: 20px;
+            color: #0f0e0e;
+            background: linear-gradient(to bottom, #f0f0f0, #d9d9d9); /* Gradien abu-abu pada section */
+            overflow-y: auto; /* Agar dapat di-scroll jika kontennya lebih panjang dari container */
+        }
+
+        .map-container {
+            flex: 1;
+            height: 100%;
+            position: relative; /* Menjadikan posisi relatif untuk konten absolut */
+            z-index: 0; /* Menetapkan z-index lebih rendah untuk peta */
+        }
+
+        .animal-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .animal-card {
+            background: #fff; /* Warna latar belakang putih */
+            border: 1px solid #0f0e0e;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+            transition: transform 0.3s ease-in-out; /* Transisi perubahan skala */
+            max-width: 300px; /* Maksimum lebar kartu */
+        }
+
+        .animal-card img {
+            max-width: 100%; /* Maksimum lebar gambar */
+            height: auto; /* Biarkan tinggi gambar disesuaikan dengan lebar */
+        }
+
+        .animal-card:hover {
+            transform: scale(1.05); /* Perubahan skala saat dihover */
+        }
+
+        footer {
+            background: #4CAF50; /* Warna hijau muda pada footer */
+            color: #fff; /* Warna teks footer */
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1; 
+        }
+
+        .product-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: auto;
+        }
+
+        .product-box {
+            width: 200px;
+            height: 250px; /* Dimensi persegi */
+            border: 1px solid #ddd;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            overflow: hidden; /* Menyembunyikan konten yang melebihi kotak */
+        }
+
+        .product-image {
+            width: 100%;
+            height: 50%; /* Setengah dari kotak */
+            object-fit: cover; /* Menyesuaikan gambar agar sesuai dengan kotak */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .action-button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-background"></div>
+
+    <header>
+        <h1>Shohibul Qurban</h1>
+    </header>
+
+    <nav>
+        <a href="#">Kategori Hewan</a>
+        <a href="#">Riwayat Pemesanan</a>
+        <a href="#">Form Pembelian</a>
+        <a href="#" class="login">Login</a>
+        <a href="#" class="sign-in">Sign In</a>
+
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Cari...">
+            <img src="cart.jpeg" alt="Cart logo" class="cart-logo">
+            <img src="prof.png" alt="Profile Logo" class="profile-logo">
+        </div>
+    </nav>
+
+    <div class="banner">
+        <p>Selamat datang di Shohibul Qurban. Segera pilih hewan kurban Anda!</p>
+    </div>
+
+    <div class="main-content">
+        <section class="section-container">
+            <h2>Produk Unggulan</h2>
+
+            <div class="product-container">
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi1.jpeg" alt="Product 1">
+                    <div class="product-title">Produk 1</div>
+                    <div class="product-price">Rp 100,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi2.jpeg" alt="Product 2">
+                    <div class="product-title">Produk 2</div>
+                    <div class="product-price">Rp 150,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+                
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi1.jpeg" alt="Product 1">
+                    <div class="product-title">Produk 1</div>
+                    <div class="product-price">Rp 100,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi2.jpeg" alt="Product 2">
+                    <div class="product-title">Produk 2</div>
+                    <div class="product-price">Rp 150,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi1.jpeg" alt="Product 1">
+                    <div class="product-title">Produk 1</div>
+                    <div class="product-price">Rp 100,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi2.jpeg" alt="Product 2">
+                    <div class="product-title">Produk 2</div>
+                    <div class="product-price">Rp 150,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi1.jpeg" alt="Product 1">
+                    <div class="product-title">Produk 1</div>
+                    <div class="product-price">Rp 100,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi2.jpeg" alt="Product 2">
+                    <div class="product-title">Produk 2</div>
+                    <div class="product-price">Rp 150,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi1.jpeg" alt="Product 1">
+                    <div class="product-title">Produk 1</div>
+                    <div class="product-price">Rp 100,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+
+                <div class="product-box">
+                    <img class="product-image" src="images/sapi1.jpeg" alt="Product 1">
+                    <div class="product-title">Produk 1</div>
+                    <div class="product-price">Rp 100,000</div>
+                    <div class="action-buttons">
+                        <button class="action-button"><i class="fas fa-shopping-cart"></i> Keranjang</button>
+                        <button class="action-button"><i class="fas fa-shopping-bag"></i> Beli</button>
+                    </div>
+                </div>
+        </section>
+
+        <section class="map-container">
+            <!-- Tambahkan kontainer untuk peta -->
+            <div id="map"></div>
+
+            <title>Cari Lokasi Qurban Terdekat</title>
+    <!-- Sertakan Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #4CAF50, #66BB6A); /* Gradien hijau pada background */
+            color: #fff;
+        }
+
+        header {
+            background: #4CAF50; /* Warna hijau muda pada header */
+            padding: 20px;
+            text-align: center;
+            color: #fff; /* Warna teks header */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: 0; /* Tetapkan z-index peta menjadi lebih rendah dari footer */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cari Lokasi Qurban Terdekat</h1>
+        <p>Temukan tempat penyedia qurban di sekitar Anda</p>
+    </header>
+
+    <!-- Tambahkan kontainer untuk peta -->
+    <div id="map"></div>
+
+    <script>
+        // Kode JavaScript untuk membuat dan mengelola peta
+        // Tentukan koordinat pusat peta Indonesia
+        var map = L.map('map').setView([-2.5489, 118.0149], 5);
+
+        // Sertakan peta dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Tambahkan marker untuk provinsi atau wilayah
+        var jakartaSelatan = L.marker([-6.289, 106.792]).addTo(map);
+        var jakartaTimur = L.marker([-6.244, 106.885]).addTo(map);
+        var jakartaUtara = L.marker([-6.133, 106.836]).addTo(map);
+
+        // Atur popup untuk masing-masing marker
+        jakartaSelatan.bindPopup("Jumlah Domba: 1000<br/>Jumlah Kambing: 800");
+        jakartaTimur.bindPopup("Jumlah Domba: 1200<br/>Jumlah Kambing: 900");
+        jakartaUtara.bindPopup("Jumlah Domba: 800<br/>Jumlah Kambing: 700");
+
+        // Fungsi untuk menangani klik pada marker
+        function onMarkerClick(e) {
+            map.setView(e.target.getLatLng(), 12); // Ngezoom ke wilayah yang diklik
+        }
+
+        // Tambahkan event listener untuk setiap marker
+        jakartaSelatan.on('click', onMarkerClick);
+        jakartaTimur.on('click', onMarkerClick);
+        jakartaUtara.on('click', onMarkerClick);
+    </script>
+</body>
+</html>
+
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2024 Shohibul Qurban
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Lokasi Qurban Terdekat</title>
+    <!-- Sertakan Leaflet.js -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #4CAF50, #66BB6A); /* Gradien hijau pada background */
+            color: #fff;
+        }
+
+        header {
+            background: #4CAF50; /* Warna hijau muda pada header */
+            padding: 20px;
+            text-align: center;
+            color: #fff; /* Warna teks header */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+        }
+
+        /* Atur ukuran peta */
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cari Lokasi Qurban Terdekat</h1>
+        <p>Temukan tempat penyedia qurban di sekitar Anda</p>
+    </header>
+
+    <div id="map"></div>
+
+    <script>
+        // Kode JavaScript untuk membuat dan mengelola peta
+        // Tentukan koordinat pusat peta Indonesia
+        var map = L.map('map').setView([-2.5489, 118.0149], 5);
+
+        // Sertakan peta dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Tambahkan marker untuk provinsi atau wilayah
+        var jakartaSelatan = L.marker([-6.289, 106.792]).addTo(map);
+        var jakartaTimur = L.marker([-6.244, 106.885]).addTo(map);
+        var jakartaUtara = L.marker([-6.133, 106.836]).addTo(map);
+
+        // Atur popup untuk masing-masing marker
+        jakartaSelatan.bindPopup("Jumlah Domba: 1000<br/>Jumlah Kambing: 800");
+        jakartaTimur.bindPopup("Jumlah Domba: 1200<br/>Jumlah Kambing: 900");
+        jakartaUtara.bindPopup("Jumlah Domba: 800<br/>Jumlah Kambing: 700");
+
+        // Fungsi untuk menangani klik pada marker
+        function onMarkerClick(e) {
+            map.setView(e.target.getLatLng(), 12); // Ngezoom ke wilayah yang diklik
+        }
+
+        // Tambahkan event listener untuk setiap marker
+        jakartaSelatan.on('click', onMarkerClick);
+        jakartaTimur.on('click', onMarkerClick);
+        jakartaUtara.on('click', onMarkerClick);
+    </script>
+</body>
+</html>

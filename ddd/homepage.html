@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shohibul Qurban</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f7f7f7; /* Warna latar belakang */
+            color: #333; /* Warna teks */
+        }
+
+        header {
+            background: #4CAF50; /* Warna hijau muda pada header */
+            padding: 20px;
+            text-align: center;
+            color: #fff; /* Warna teks header */
+        }
+
+        .top-background {
+            background: linear-gradient(to bottom, #f0f0f0, #d9d9d9); /* Gradien abu-abu di atas banner */
+            height: 50px;
+        }
+
+        .banner {
+            background: linear-gradient(to right, #66BB6A, #4CAF50); /* Gradien hijau pada banner */
+            height: 300px; /* Sesuaikan tinggi banner */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff; /* Warna teks pada banner */
+            text-align: center;
+            font-size: 24px;
+        }
+
+        section {
+            padding: 20px;
+            margin-top: 20px; /* Tambahkan margin top agar konten tidak tertutup oleh banner */
+            background: linear-gradient(to bottom, #f0f0f0, #d9d9d9); /* Gradien abu-abu pada section */
+        }
+
+        .animal-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .animal-card {
+            background: #fff; /* Warna latar belakang putih */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+            transition: transform 0.3s ease-in-out; /* Transisi perubahan skala */
+            max-width: 300px; /* Maksimum lebar kartu */
+        }
+
+        .animal-card img {
+            max-width: 100%; /* Maksimum lebar gambar */
+            height: auto; /* Biarkan tinggi gambar disesuaikan dengan lebar */
+        }
+
+        .animal-card:hover {
+            transform: scale(1.05); /* Perubahan skala saat dihover */
+        }
+
+        .section-container {
+            background: linear-gradient(to bottom, #f0f0f0, #d9d9d9); /* Gradien abu-abu pada section container */
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #4CAF50; /* Warna hijau muda pada footer */
+            color: #fff; /* Warna teks footer */
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            background: #8b9e8c; /* Warna hijau muda pada navigasi */
+            padding: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+        }
+
+        nav a {
+            color: #fff; /* Warna teks navigasi */
+            text-decoration: none;
+            padding: 10px;
+            margin: 0 10px;
+            transition: color 0.3s ease-in-out; /* Transisi warna */
+            border: 1px solid transparent; /* Batas kotak pada link */
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            color: #388E3C; /* Warna teks saat dihover */
+        }
+
+        nav a.login {
+            border: 1px solid #66BB6A; /* Batas kotak pada link login */
+            border-radius: 5px;
+        }
+
+        nav a.sign-in {
+            background: linear-gradient(to right, #66BB6A, #4CAF50); /* Gradien hijau pada link sign in */
+            color: #fff; /* Warna teks pada link sign in */
+            border: 1px solid #66BB6A; /* Batas kotak pada link sign in */
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        nav a.sign-in:hover {
+            background: linear-gradient(to right, #4CAF50, #388E3C); /* Gradien hijau saat dihover pada link sign in */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-background"></div>
+
+    <header>
+        <h1>Shohibul Qurban</h1>
+    </header>
+
+    <div class="banner">
+        <p>Selamat datang di Shohibul Qurban. Segera pilih hewan kurban Anda!</p>
+    </div>
+
+    <nav>
+        <a href="#">Peta</a>
+        <a href="#">Kategori Hewan</a>
+        <a href="#">Portofolio</a>
+        <a href="#">Riwayat Pemesanan</a>
+        <a href="#">Daftar Peternak</a>
+        <a href="#">Form Pembelian</a>
+        <a href="#" class="login">Login</a>
+        <a href="#" class="sign-in">Sign In</a>
+    </nav>
+
+    <section class="section-container">
+        <h2>Produk Unggulan</h2>
+
+        <div class="animal-container">
+            <div class="animal-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Kambing_etawa.jpg" alt="Kambing">
+                <h3>Kambing</h3>
+                <p>Harga: Rp 2.000.000</p>
+                <p>Jenis: Kambing Etawa</p>
+                <p>Berat: 30 kg</p>
+            </div>
+
+            <div class="animal-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Domba_Garut.jpg" alt="Domba">
+                <h3>Domba</h3>
+                <p>Harga: Rp 1.500.000</p>
+                <p>Jenis: Domba Garut</p>
+                <p>Berat: 25 kg</p>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        &copy; 2024 Shohibul Qurban
+    </footer>
+
+</body>
+</html>
